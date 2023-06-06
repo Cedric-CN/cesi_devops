@@ -6,8 +6,12 @@ RUN rc-status \
     && touch /run/openrc/softlevel \
     && rc-service sshd start \
     && echo -e "PermitRootLogin yes" >> /etc/ssh/sshd_config \
+    && ssh-keygen -A \
+    && echo -e "PasswordAuthentication no" >> /etc/ssh/sshd_config \
     && mkdir -p /run/openrc \
     && touch /run/openrc/softlevel
+RUN apk add git
+RUN service sshd restart
 
 # create & set working directory
 RUN mkdir -p /usr/src
