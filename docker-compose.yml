@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+      - 2000:22
+
+  nginx:
+    build: ./nginx/
+    restart: always
+    ports:
+      - 1342:80
